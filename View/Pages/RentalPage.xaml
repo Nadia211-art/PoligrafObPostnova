@@ -1,0 +1,33 @@
+﻿<Page x:Class="PoligrafObPostnova.View.Pages.RentalPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PoligrafObPostnova.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="250"
+        Title="Аренда">
+    <Grid>
+        <StackPanel Margin="10">
+            <TextBlock Text="Оформление аренды" 
+               FontWeight="Bold" FontSize="16" 
+               Margin="0,0,0,10"/>
+
+            <TextBlock Text="Клиент:" Margin="0,5"/>
+            <ComboBox x:Name="ClientCmb" Height="25" Margin="0,5"/>
+
+            <TextBlock Text="Дата начала:" Margin="0,10,0,5"/>
+            <DatePicker x:Name="StartDateDp" Height="25" Margin="0,5"/>
+
+            <TextBlock Text="Дата окончания:" Margin="0,10,0,5"/>
+            <DatePicker x:Name="EndDateDp" Height="25" Margin="0,5"/>
+
+            <TextBlock Text="Стоимость:" Margin="0,10,0,5"/>
+            <TextBox x:Name="CostTb" Height="25" Margin="0,5" Text="0"/>
+
+            <Button Name="ArrangeLeaseBtn" Content="Оформить аренду" 
+            Height="30" Margin="0,10" Click="ArrangeLeaseBtn_Click"
+            />
+        </StackPanel>
+    </Grid>
+</Page>
