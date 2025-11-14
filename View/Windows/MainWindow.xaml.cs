@@ -40,5 +40,10 @@ namespace PoligrafObPostnova
         {
             MainFrame.Navigate(new ClientsPage());
         }
+
+        private void JournalBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new JournalPage());
+        }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PoligrafObPostnova"
         mc:Ignorable="d"
             Title="Аренда полиграфического оборудования" 
-    Height="350" Width="450"
+    Height="400" Width="450"
     WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -26,11 +26,13 @@
                 Click="RentalBtn_Click"
                 Margin="0,5" Padding="10,5" Background="LightGreen"/>
 
-            <Button x:Name="ClientsBtn" Content="Клиенты" 
+            <Button x:Name="ClientBtn" Content="Клиенты" 
                 Click="ClientsBtn_Click"
                 Margin="0,5" Padding="10,5" Background="LightYellow"/>
 
-
+            <Button x:Name="JournalBtn" Content="Журнал" 
+    Click="JournalBtn_Click"
+    Margin="0,5" Padding="10,5" Background="LightCoral"/>
         </StackPanel>
 
         <!-- Основная область контента -->

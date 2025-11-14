@@ -20,8 +20,6 @@
             <TextBlock Text="Модель:" Margin="0,10,0,5"/>
             <ComboBox x:Name="ModelCmb" Height="25" Margin="0,5"/>
 
-            <TextBlock Text="Срок аренды:" Margin="0,10,0,5"/>
-            <ComboBox x:Name="RentalPeriodCmb" Height="25" Margin="0,5"/>
 
             <Button Name="AddOrderBtn" Content="Добавить в заказ" 
             Height="30" Margin="0,20" Click="AddOrderBtn_Click"
