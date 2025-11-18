@@ -22,7 +22,6 @@ namespace PoligrafObPostnova.Model
         public int Id { get; set; }
         public int IdType { get; set; }
         public string Name { get; set; }
-        public string RentalDate { get; set; }
     
         public virtual EquipmentType EquipmentType { get; set; }
         public virtual ICollection<Rental> Rental { get; set; }

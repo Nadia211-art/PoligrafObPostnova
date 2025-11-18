@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c4466159ec0f4b1cbebd22fdbff81542" Name="Diagram1">
-        <EntityTypeShape EntityType="PostnovaPoligrafModel.Equipment" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+      <Diagram DiagramId="f235ecf1aace412e87f92039da551191" Name="Diagram1">
+        <EntityTypeShape EntityType="PostnovaPoligrafModel.Equipment" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="PostnovaPoligrafModel.EquipmentType" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="PostnovaPoligrafModel.Rental" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="PostnovaPoligrafModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
