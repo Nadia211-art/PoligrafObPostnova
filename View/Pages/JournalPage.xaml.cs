@@ -23,6 +23,8 @@ namespace PoligrafObPostnova.View.Pages
         public JournalPage()
         {
             InitializeComponent();
+
+            JournalLv.ItemsSource = App.context.Rental.ToList();
         }
     }
 }

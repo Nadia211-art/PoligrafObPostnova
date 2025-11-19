@@ -12,10 +12,10 @@
         <ListView Name="JournalLv">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Клиент"/>
-                    <GridViewColumn Header="Оборудование"/>
-                    <GridViewColumn Header="Дата начала"/>
-                    <GridViewColumn Header="Дата окончания"/>
+                    <GridViewColumn Header="Клиент" DisplayMemberBinding="{Binding Rental.User.Name}"/>
+                    <GridViewColumn Header="Оборудование" DisplayMemberBinding="{Binding Equipment.Name}"/>
+                    <GridViewColumn Header="Дата начала" DisplayMemberBinding="{Binding Rental.StartDate, StringFormat=dd.MM.yyy}"/>
+                    <GridViewColumn Header="Дата окончания" DisplayMemberBinding="{Binding Rental.EndDate, StringFormat=dd.MM.yyy}"/>
                 </GridView>
             </ListView.View>
         </ListView>

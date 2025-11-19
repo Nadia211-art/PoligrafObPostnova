@@ -52,7 +52,7 @@ namespace PoligrafObPostnova.View.Pages
 
                 App.context.User.Add(user);
                 App.context.SaveChanges();
-                MessageBox.Show("Активность добавлена");
+                MessageBox.Show("Клиент добавлен");
 
                 ClientNameTb.Text = "";
                    EmailTb.Text = "";

@@ -25,33 +25,35 @@ namespace PoligrafObPostnova.View.Pages
         {
             InitializeComponent();
 
-            EquipmentTypeCmb
+            EquipmentTypeCmb.SelectedValuePath = "Id";
+            EquipmentTypeCmb.DisplayMemberPath = "Name";
+            EquipmentTypeCmb.ItemsSource=App.context.EquipmentType.ToList();
+
+            ModelCmb.SelectedValuePath = "Id";
+            ModelCmb.DisplayMemberPath= "Name";
+            ModelCmb.ItemsSource = App.context.Equipment.ToList();
         }
 
         private void AddOrderBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(ClientNameTb.Text) && string.IsNullOrEmpty(ClientTypeCmb.Text) && string.IsNullOrEmpty(PhoneTb.Text) && string.IsNullOrEmpty(EmailTb.Text))
+            if (string.IsNullOrEmpty(EquipmentTypeCmb.Text) && string.IsNullOrEmpty(ModelCmb.Text))
             {
                 MessageBox.Show("Заполните все поля");
             }
             else
             {
-                User user = new User()
+                Equipment equipment = new Equipment()
                 {
-                    Fullname = ClientNameTb.Text,
-                    Email = EmailTb.Text,
-                    Phone = PhoneTb.Text,
-                    UserType = ClientTypeCmb.SelectedItem as UserType
+                    Name = Convert.ToString(ModelCmb.SelectedItem as Equipment),
+                    EquipmentType = EquipmentTypeCmb.SelectedItem as EquipmentType
                 };
 
-                App.context.User.Add(user);
+                App.context.Equipment.Add(equipment);
                 App.context.SaveChanges();
-                MessageBox.Show("Активность добавлена");
+                MessageBox.Show("Оборудование добавлено");
 
-                ClientNameTb.Text = "";
-                EmailTb.Text = "";
-                PhoneTb.Text = "";
-                ClientTypeCmb.Text = "";
+                EquipmentTypeCmb.Text = "";
+                ModelCmb.Text = "";
 
 
             }
