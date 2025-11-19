@@ -26,7 +26,7 @@ namespace PoligrafObPostnova.View.Pages
             InitializeComponent();
 
             ClientCmb.SelectedValuePath = "Id";
-            ClientCmb.DisplayMemberPath = "Name";
+            ClientCmb.DisplayMemberPath = "Fullname";
             ClientCmb.ItemsSource = App.context.User.ToList();
         }
 
@@ -40,7 +40,7 @@ namespace PoligrafObPostnova.View.Pages
             {
                 Rental rental = new Rental()
                 {
-                    User = ClientCmb.SelectedItem as User,
+                    //IdUser = Convert.ToInt32(ClientCmb.SelectedItem as User),
                     StartDate = (DateTime)StartDateDp.SelectedDate,
                     EndDate = (DateTime)EndDateDp.SelectedDate,
                     Cost = Convert.ToDecimal(CostTb.Text)

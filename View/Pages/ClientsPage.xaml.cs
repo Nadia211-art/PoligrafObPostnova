@@ -29,9 +29,6 @@ namespace PoligrafObPostnova.View.Pages
             ClientTypeCmb.SelectedValuePath = "Id";
             ClientTypeCmb.DisplayMemberPath = "Name";
             ClientTypeCmb.ItemsSource = App.context.UserType.ToList();
-
-
-
         }
 
         private void AddClientBtn_Click(object sender, RoutedEventArgs e)
