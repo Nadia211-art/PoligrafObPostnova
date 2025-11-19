@@ -47,7 +47,7 @@ namespace PoligrafObPostnova.View.Pages
                     Fullname = ClientNameTb.Text,
                     Email = EmailTb.Text,
                     Phone = PhoneTb.Text,
-                    UserType = ClientTypeCmb.SelectedItem as UserType
+                    //UserType = ClientTypeCmb.SelectedItem as UserType
                 };
 
                 App.context.User.Add(user);

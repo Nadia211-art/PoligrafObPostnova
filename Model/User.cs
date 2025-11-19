@@ -24,7 +24,7 @@ namespace PoligrafObPostnova.Model
         public string Email { get; set; }
         public string Password { get; set; }
         public string Phone { get; set; }
-        public int IdType { get; set; }
+        public Nullable<int> IdType { get; set; }
     
         public virtual ICollection<Rental> Rental { get; set; }
         public virtual UserType UserType { get; set; }

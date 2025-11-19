@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище PostnovaPoligrafModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище PostnovaPoligrafModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Equipment">
           <Key>
             <PropertyRef Name="Id" />
@@ -48,9 +48,9 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Fullname" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="16" />
           <Property Name="Phone" Type="nchar" MaxLength="11" Nullable="false" />
-          <Property Name="IdType" Type="int" Nullable="false" />
+          <Property Name="IdType" Type="int" />
         </EntityType>
         <EntityType Name="UserType">
           <Key>
@@ -96,7 +96,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_UserType">
-          <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
+          <End Role="UserType" Type="Self.UserType" Multiplicity="0..1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserType">
@@ -131,28 +131,51 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PostnovaPoligrafModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PostnovaPoligrafEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Equipment" EntityType="PostnovaPoligrafModel.Equipment" />
+          <EntitySet Name="EquipmentType" EntityType="PostnovaPoligrafModel.EquipmentType" />
+          <EntitySet Name="Rental" EntityType="PostnovaPoligrafModel.Rental" />
+          <EntitySet Name="sysdiagrams" EntityType="PostnovaPoligrafModel.sysdiagrams" />
+          <EntitySet Name="User" EntityType="PostnovaPoligrafModel.User" />
+          <EntitySet Name="UserType" EntityType="PostnovaPoligrafModel.UserType" />
+          <AssociationSet Name="FK_Equipment_EquipmentType" Association="PostnovaPoligrafModel.FK_Equipment_EquipmentType">
+            <End Role="EquipmentType" EntitySet="EquipmentType" />
+            <End Role="Equipment" EntitySet="Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rental_Equipment" Association="PostnovaPoligrafModel.FK_Rental_Equipment">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="Rental" EntitySet="Rental" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rental_User" Association="PostnovaPoligrafModel.FK_Rental_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Rental" EntitySet="Rental" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_UserType" Association="PostnovaPoligrafModel.FK_User_UserType">
+            <End Role="UserType" EntitySet="UserType" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Equipment">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdType" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="EquipmentType" Relationship="Self.FK_Equipment_EquipmentType" FromRole="Equipment" ToRole="EquipmentType" />
-          <NavigationProperty Name="Rental" Relationship="Self.FK_Rental_Equipment" FromRole="Equipment" ToRole="Rental" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EquipmentType" Relationship="PostnovaPoligrafModel.FK_Equipment_EquipmentType" FromRole="Equipment" ToRole="EquipmentType" />
+          <NavigationProperty Name="Rental" Relationship="PostnovaPoligrafModel.FK_Rental_Equipment" FromRole="Equipment" ToRole="Rental" />
         </EntityType>
         <EntityType Name="EquipmentType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Equipment" Relationship="Self.FK_Equipment_EquipmentType" FromRole="EquipmentType" ToRole="Equipment" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Equipment" Relationship="PostnovaPoligrafModel.FK_Equipment_EquipmentType" FromRole="EquipmentType" ToRole="Equipment" />
         </EntityType>
         <EntityType Name="Rental">
           <Key>
@@ -162,16 +185,16 @@
           <Property Name="IdUser" Type="Int32" Nullable="false" />
           <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="EndDate" Type="DateTime" Precision="0" />
-          <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="IdEquipment" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Equipment" Relationship="Self.FK_Rental_Equipment" FromRole="Rental" ToRole="Equipment" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Rental_User" FromRole="Rental" ToRole="User" />
+          <NavigationProperty Name="Equipment" Relationship="PostnovaPoligrafModel.FK_Rental_Equipment" FromRole="Rental" ToRole="Equipment" />
+          <NavigationProperty Name="User" Relationship="PostnovaPoligrafModel.FK_Rental_User" FromRole="Rental" ToRole="User" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
@@ -182,25 +205,25 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Fullname" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="IdType" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Rental" Relationship="Self.FK_Rental_User" FromRole="User" ToRole="Rental" />
-          <NavigationProperty Name="UserType" Relationship="Self.FK_User_UserType" FromRole="User" ToRole="UserType" />
+          <Property Name="Fullname" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="true" />
+          <Property Name="IdType" Type="Int32" />
+          <NavigationProperty Name="Rental" Relationship="PostnovaPoligrafModel.FK_Rental_User" FromRole="User" ToRole="Rental" />
+          <NavigationProperty Name="UserType" Relationship="PostnovaPoligrafModel.FK_User_UserType" FromRole="User" ToRole="UserType" />
         </EntityType>
         <EntityType Name="UserType">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK_User_UserType" FromRole="UserType" ToRole="User" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="PostnovaPoligrafModel.FK_User_UserType" FromRole="UserType" ToRole="User" />
         </EntityType>
         <Association Name="FK_Equipment_EquipmentType">
-          <End Role="EquipmentType" Type="Self.EquipmentType" Multiplicity="1" />
-          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <End Type="PostnovaPoligrafModel.EquipmentType" Role="EquipmentType" Multiplicity="1" />
+          <End Type="PostnovaPoligrafModel.Equipment" Role="Equipment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EquipmentType">
               <PropertyRef Name="Id" />
@@ -211,8 +234,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Rental_Equipment">
-          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
-          <End Role="Rental" Type="Self.Rental" Multiplicity="*" />
+          <End Type="PostnovaPoligrafModel.Equipment" Role="Equipment" Multiplicity="1" />
+          <End Type="PostnovaPoligrafModel.Rental" Role="Rental" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Equipment">
               <PropertyRef Name="Id" />
@@ -223,8 +246,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Rental_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Rental" Type="Self.Rental" Multiplicity="*" />
+          <End Type="PostnovaPoligrafModel.User" Role="User" Multiplicity="1" />
+          <End Type="PostnovaPoligrafModel.Rental" Role="Rental" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -235,8 +258,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_UserType">
-          <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <End Type="PostnovaPoligrafModel.UserType" Role="UserType" Multiplicity="0..1" />
+          <End Type="PostnovaPoligrafModel.User" Role="User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="UserType">
               <PropertyRef Name="Id" />
@@ -246,30 +269,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="PostnovaPoligrafEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Equipment" EntityType="Self.Equipment" />
-          <EntitySet Name="EquipmentType" EntityType="Self.EquipmentType" />
-          <EntitySet Name="Rental" EntityType="Self.Rental" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="User" EntityType="Self.User" />
-          <EntitySet Name="UserType" EntityType="Self.UserType" />
-          <AssociationSet Name="FK_Equipment_EquipmentType" Association="Self.FK_Equipment_EquipmentType">
-            <End Role="EquipmentType" EntitySet="EquipmentType" />
-            <End Role="Equipment" EntitySet="Equipment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Rental_Equipment" Association="Self.FK_Rental_Equipment">
-            <End Role="Equipment" EntitySet="Equipment" />
-            <End Role="Rental" EntitySet="Rental" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Rental_User" Association="Self.FK_Rental_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Rental" EntitySet="Rental" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_UserType" Association="Self.FK_User_UserType">
-            <End Role="UserType" EntitySet="UserType" />
-            <End Role="User" EntitySet="User" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -279,60 +278,60 @@
           <EntitySetMapping Name="Equipment">
             <EntityTypeMapping TypeName="PostnovaPoligrafModel.Equipment">
               <MappingFragment StoreEntitySet="Equipment">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdType" ColumnName="IdType" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EquipmentType">
             <EntityTypeMapping TypeName="PostnovaPoligrafModel.EquipmentType">
               <MappingFragment StoreEntitySet="EquipmentType">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Rental">
             <EntityTypeMapping TypeName="PostnovaPoligrafModel.Rental">
               <MappingFragment StoreEntitySet="Rental">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
                 <ScalarProperty Name="IdEquipment" ColumnName="IdEquipment" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="PostnovaPoligrafModel.sysdiagrams">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="PostnovaPoligrafModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="IdType" ColumnName="IdType" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserType">
             <EntityTypeMapping TypeName="PostnovaPoligrafModel.UserType">
               <MappingFragment StoreEntitySet="UserType">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
