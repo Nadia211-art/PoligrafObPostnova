@@ -14,6 +14,7 @@ namespace PoligrafObPostnova
     /// </summary>
     public partial class App : Application
     {
+        public static User currentUser = new User();
         public static PostnovaPoligrafEntities context= new PostnovaPoligrafEntities();
     }
 }
