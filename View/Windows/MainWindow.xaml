@@ -18,9 +18,6 @@
         <StackPanel  Background="#f0f0f0">
             <TextBlock Text="Меню" FontSize="16" FontWeight="Bold" Margin="0,0,0,20"/>
 
-            <Button x:Name="EquipmentBtn" Content="Оборудование" 
-                Click="EquipmentBtn_Click" 
-                Margin="0,5" Padding="10,5" Background="LightBlue"/>
 
             <Button x:Name="RentalBtn" Content="Аренда" 
                 Click="RentalBtn_Click"

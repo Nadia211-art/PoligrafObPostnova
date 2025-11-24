@@ -5,16 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="f235ecf1aace412e87f92039da551191" Name="Diagram1">
-        <EntityTypeShape EntityType="PostnovaPoligrafModel.Equipment" Width="1.5" PointX="3" PointY="5.25" />
-        <EntityTypeShape EntityType="PostnovaPoligrafModel.EquipmentType" Width="1.5" PointX="0.75" PointY="5.375" />
+        <EntityTypeShape EntityType="PostnovaPoligrafModel.Equipment" Width="1.5" PointX="3" PointY="1.25" />
+        <EntityTypeShape EntityType="PostnovaPoligrafModel.EquipmentType" Width="1.5" PointX="0.75" PointY="1.375" />
         <EntityTypeShape EntityType="PostnovaPoligrafModel.Rental" Width="1.5" PointX="5.25" PointY="1" />
         <EntityTypeShape EntityType="PostnovaPoligrafModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" />
-        <EntityTypeShape EntityType="PostnovaPoligrafModel.User" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="PostnovaPoligrafModel.UserType" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="PostnovaPoligrafModel.User" Width="1.5" PointX="3" PointY="5" />
+        <EntityTypeShape EntityType="PostnovaPoligrafModel.UserType" Width="1.5" PointX="7.75" PointY="0.75" />
         <AssociationConnector Association="PostnovaPoligrafModel.FK_Equipment_EquipmentType" />
         <AssociationConnector Association="PostnovaPoligrafModel.FK_Rental_Equipment" />
         <AssociationConnector Association="PostnovaPoligrafModel.FK_Rental_User" />
-        <AssociationConnector Association="PostnovaPoligrafModel.FK_User_UserType" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

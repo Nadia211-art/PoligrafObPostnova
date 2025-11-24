@@ -28,19 +28,24 @@ namespace PoligrafObPostnova.View.Pages
             ClientCmb.SelectedValuePath = "Id";
             ClientCmb.DisplayMemberPath = "Fullname";
             ClientCmb.ItemsSource = App.context.User.ToList();
+
+            EquipmentCmb.SelectedValuePath = "Id";
+            EquipmentCmb.DisplayMemberPath = "Name";
+            EquipmentCmb.ItemsSource = App.context.Equipment.ToList();
         }
 
         private void ArrangeLeaseBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrEmpty(ClientCmb.Text) && string.IsNullOrEmpty(StartDateDp.Text) && string.IsNullOrEmpty(EndDateDp.Text) && string.IsNullOrEmpty(CostTb.Text))
+            if (string.IsNullOrEmpty(ClientCmb.Text) && string.IsNullOrEmpty(StartDateDp.Text) && string.IsNullOrEmpty(EndDateDp.Text) && string.IsNullOrEmpty(CostTb.Text)&&string.IsNullOrEmpty(EquipmentCmb.Text))
             {
                 MessageBox.Show("Заполните все поля");
-            }
+            } 
             else
             {
                 Rental rental = new Rental()
                 {
-                    //IdUser = Convert.ToInt32(ClientCmb.SelectedItem as User),
+                    User = ClientCmb.SelectedItem as User,
+                    Equipment=EquipmentCmb.SelectedItem as Equipment,
                     StartDate = (DateTime)StartDateDp.SelectedDate,
                     EndDate = (DateTime)EndDateDp.SelectedDate,
                     Cost = Convert.ToDecimal(CostTb.Text)
@@ -51,6 +56,7 @@ namespace PoligrafObPostnova.View.Pages
                 MessageBox.Show("Аренда добавлена");
 
                 ClientCmb.Text = "";
+                EquipmentCmb.Text = "";
                 StartDateDp.Text = "";
                 EndDateDp.Text = "";
                 CostTb.Text = "";

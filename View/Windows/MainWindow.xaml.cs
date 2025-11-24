@@ -26,10 +26,7 @@ namespace PoligrafObPostnova
             InitializeComponent();
         }
 
-        private void EquipmentBtn_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Navigate(new EquipmentPage());
-        }
+      
 
         private void RentalBtn_Click(object sender, RoutedEventArgs e)
         {

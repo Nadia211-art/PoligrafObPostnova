@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PoligrafObPostnova.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,27 @@ namespace PoligrafObPostnova.View.Windows
 
         private void RegistrationBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrEmpty(LoginTb.Text) || string.IsNullOrEmpty(PasswordPb.Password) || string.IsNullOrEmpty(PasswordPb.Password))
+            {
+                MessageBox.Show("Заполните все поля!", "Предупреждение", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else
+            {
+                User user = new User()
+                {
+                    Email=LoginTb.Text,
+                    Password = PasswordPb.Password
+                };
 
+                App.context.User.Add(user);
+                App.context.SaveChanges();
+                MessageBox.Show("Вы успешно зарегистрированы");
+
+                AuthorizationWindow authorizationWindow= new AuthorizationWindow();
+                authorizationWindow.Show();
+                Close();
+
+            }
         }
     }
 }

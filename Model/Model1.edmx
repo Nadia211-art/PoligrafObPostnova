@@ -46,10 +46,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Fullname" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Fullname" Type="nvarchar" MaxLength="150" />
           <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="16" />
-          <Property Name="Phone" Type="nchar" MaxLength="11" Nullable="false" />
+          <Property Name="Phone" Type="nchar" MaxLength="11" />
           <Property Name="IdType" Type="int" />
         </EntityType>
         <EntityType Name="UserType">
@@ -95,18 +95,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_UserType">
-          <End Role="UserType" Type="Self.UserType" Multiplicity="0..1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="IdType" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Хранилище PostnovaPoligrafModelContainer">
           <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EquipmentType" EntityType="Self.EquipmentType" Schema="dbo" store:Type="Tables" />
@@ -125,10 +113,6 @@
           <AssociationSet Name="FK_Rental_User" Association="Self.FK_Rental_User">
             <End Role="User" EntitySet="User" />
             <End Role="Rental" EntitySet="Rental" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_UserType" Association="Self.FK_User_UserType">
-            <End Role="UserType" EntitySet="UserType" />
-            <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -153,10 +137,6 @@
           <AssociationSet Name="FK_Rental_User" Association="PostnovaPoligrafModel.FK_Rental_User">
             <End Role="User" EntitySet="User" />
             <End Role="Rental" EntitySet="Rental" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_UserType" Association="PostnovaPoligrafModel.FK_User_UserType">
-            <End Role="UserType" EntitySet="UserType" />
-            <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Equipment">
@@ -205,13 +185,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Fullname" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Fullname" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="true" Unicode="true" />
           <Property Name="IdType" Type="Int32" />
           <NavigationProperty Name="Rental" Relationship="PostnovaPoligrafModel.FK_Rental_User" FromRole="User" ToRole="Rental" />
-          <NavigationProperty Name="UserType" Relationship="PostnovaPoligrafModel.FK_User_UserType" FromRole="User" ToRole="UserType" />
         </EntityType>
         <EntityType Name="UserType">
           <Key>
@@ -219,7 +198,6 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="User" Relationship="PostnovaPoligrafModel.FK_User_UserType" FromRole="UserType" ToRole="User" />
         </EntityType>
         <Association Name="FK_Equipment_EquipmentType">
           <End Type="PostnovaPoligrafModel.EquipmentType" Role="EquipmentType" Multiplicity="1" />
@@ -254,18 +232,6 @@
             </Principal>
             <Dependent Role="Rental">
               <PropertyRef Name="IdUser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_User_UserType">
-          <End Type="PostnovaPoligrafModel.UserType" Role="UserType" Multiplicity="0..1" />
-          <End Type="PostnovaPoligrafModel.User" Role="User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserType">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="IdType" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

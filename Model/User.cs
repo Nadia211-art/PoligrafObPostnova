@@ -27,6 +27,5 @@ namespace PoligrafObPostnova.Model
         public Nullable<int> IdType { get; set; }
     
         public virtual ICollection<Rental> Rental { get; set; }
-        public virtual UserType UserType { get; set; }
     }
 }

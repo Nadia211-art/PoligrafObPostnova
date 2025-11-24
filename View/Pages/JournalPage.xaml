@@ -16,6 +16,7 @@
                     <GridViewColumn Header="Оборудование" DisplayMemberBinding="{Binding Equipment.Name}"/>
                     <GridViewColumn Header="Дата начала" DisplayMemberBinding="{Binding StartDate, StringFormat=dd.MM.yyyy}"/>
                     <GridViewColumn Header="Дата окончания" DisplayMemberBinding="{Binding EndDate, StringFormat=dd.MM.yyyy}"/>
+                    <GridViewColumn Header="Стоимость" DisplayMemberBinding="{Binding Cost}"/>
                 </GridView>
             </ListView.View>
         </ListView>

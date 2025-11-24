@@ -16,6 +16,9 @@
             <TextBlock Text="Клиент:" Margin="0,5"/>
             <ComboBox x:Name="ClientCmb" Height="25" Margin="0,5"/>
 
+            <TextBlock Text="Оборудование:" Margin="0,5"/>
+            <ComboBox x:Name="EquipmentCmb" Height="25" Margin="0,5"/>
+
             <TextBlock Text="Дата начала:" Margin="0,10,0,5"/>
             <DatePicker x:Name="StartDateDp" Height="25" Margin="0,5"/>
 

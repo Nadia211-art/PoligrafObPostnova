@@ -27,7 +27,9 @@ namespace PoligrafObPostnova.View.Windows
 
         private void RegistrationBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            RegistrationWindow registrationWindow = new RegistrationWindow();   
+            registrationWindow.Show();
+            Close();
         }
 
         private void AuthorizationBtn_Click(object sender, RoutedEventArgs e)
